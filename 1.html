@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+        
+        #app {
+            width: 600px;
+            margin: 10px auto;
+        }
+        
+        .tb {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        
+        .tb th {
+            background-color: #0094ff;
+            color: white;
+        }
+        
+        .tb td,
+        .tb th {
+            padding: 5px;
+            border: 1px solid black;
+            text-align: center;
+        }
+        
+        .add {
+            padding: 5px;
+            border: 1px solid black;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="add">
+            品牌名称:
+            <input type="text" v-model="brandName">
+            <input type="button" :disabled="brandName.length===0" value="添加" @click="handelAdd()">
+        </div>
+
+        <div class="add">
+            品牌名称:
+            <input type="text" placeholder="请输入搜索条件">
+        </div>
+
+        <div>
+            <table class="tb">
+                <tr>
+                    <th>编号</th>
+                    <th>品牌名称</th>
+                    <th>创立时间</th>
+                    <th>操作</th>
+                </tr>
+                <tr v-cloak v-once :key="index" v-for="(item,index) in list">
+                    <td>{{ index+1 }}</td>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.time }}</td>
+                    <td>
+                        <a href="#" @click.prevent="handelDel(index)">删除</a>
+                    </td>
+                </tr>
+                <tr v-show="list.length === 0">
+                    <td colspan="4">没有品牌数据</td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <script src="lib/vue.js"></script>
+    <script>
+        //数据在数组中
+        //1.列表显示
+        //2.添加数据
+        //3.删除数据
+        new Vue({
+            el: '#app',
+            data: {
+                list: [{
+                        name: 'LV',
+                        time: '2011-1-1'
+                    }, {
+                        name: 'Apple',
+                        time: '1999-2-1'
+                    }, {
+                        name: 'Lenovo',
+                        time: '1989-2-1'
+                    }, {
+                        name: 'GR',
+                        time: '1997-2-1'
+                    }
+
+                ],
+                brandName: '',
+            },
+            methods: {
+                handelAdd() {
+                    if (this.brandName.length === 0) {
+                        alert('不能为空');
+                        return false;
+                    }
+                    this.list.push({
+                        name: this.brandName,
+                        time: new Date()
+                    });
+                    this.brandName = '';
+                },
+                handelDel(index) {
+                    if (confirm('确定要删除该品牌?')) {
+                        this.list.splice(index, 1);
+                    }
+
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

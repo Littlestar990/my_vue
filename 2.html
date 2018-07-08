@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- <input type="checkbox" v-model="isChecked">{{isChecked}} -->
+        <input type="checkbox" v-model="checList" value="eat">
+        <input type="checkbox" v-model="checList" value="sleep">
+        <input type="checkbox" v-model="checList" value="ddd"> {{checList}}
+        <br>
+        <input type="radio" value="男" name="sex" v-model="sexC">男<br>
+        <input type="radio" value="女" name="sex" v-model="sexC">女<br> {{sexC}}
+        <br>
+        <select name="" id="" v-model.number="selectList">
+			<option disabled value="1">请选择</option>
+			<option value="2">北京</option>
+			<option value="3">上海</option>
+			<option value="4">石家庄</option>
+		</select> {{selectList}}
+    </div>
+    <script src="lib/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                mes: '',
+                isChecked: true,
+                checList: [],
+                sexC: '',
+                selectList: '1'
+            }
+        })
+    </script>
+</body>
+
+</html>

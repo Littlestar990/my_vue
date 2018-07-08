@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        {{msg}}
+        <br> {{reverseMsg}}
+    </div>
+    <script src="lib/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                msg: 'hello vue'
+            },
+            //方法 依赖data中数据的变化,如果data中数据变化,那么会重新执行计算属性
+            //简化模板中的调用
+            //计算属性调用不加括号
+            //计算属性基于他们依赖的数据缓存
+            computed: {
+                reverseMsg() {
+                    return this.msg.split('').reverse().join('');
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

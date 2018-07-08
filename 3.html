@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style lang="">
+        .active {
+            color: red;
+        }
+        
+        .b {
+            background-color: #ddd;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 对象语法 -->
+        <div :class="{active:isActive}">sssssss</div>
+        <!-- 数组语法 -->
+        <div :class="[classA,classB]">ddddd</div>
+        <!-- 行内样式 -->
+        <div :style="{color:color,fontSize:fontSize}">ffffff</div>
+    </div>
+    <script src="lib/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                isActive: true,
+                classA: 'active',
+                classB: 'b',
+                color: 'red',
+                fontSize: '20px'
+            }
+        })
+    </script>
+</body>
+
+</html>
